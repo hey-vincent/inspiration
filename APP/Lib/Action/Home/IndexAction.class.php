@@ -15,6 +15,16 @@ class IndexAction extends Action {
 	
 	public function sayHello()
 	{
-		
+		if($isset($_COOKIE['user']))
+		{
+			echo "Welcome back" . "<br>";
+			dump($_COOKIE);
+		}
+		else
+		{
+			echo "Welcome to my site";
+			setcookie('user','Vin',time() + 24*3600);
+			dump($_COOKIE);
+		}
 	}
 }
