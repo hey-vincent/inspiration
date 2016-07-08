@@ -1,0 +1,121 @@
+<html>
+<head> 
+<title>Common Tools </title> 
+
+<style>
+.input_btn_result{
+    width=100px;
+}
+</style>
+
+<script src="/src/js_lib/jquery3.0.js"></script>
+
+<script type="text/javascript">
+function get_md()
+{
+    var src = $("#md5_src").val();
+    var des = "";
+    $.ajax({
+         url: "/home/tools/getMd5/",
+         type: "post",
+         dataType:"json",
+         data:{"src":src},
+         success: function(result) {
+            des = result.message;
+            $("#md5_des").html(des.toString());
+            //$("#md5_des").html("hello ");
+         },
+    })
+}
+
+function checkCap()
+{
+    if($("#cap_val").val() == ''){
+        $("#compare_result").html("none input");
+        return;
+    }
+    var cap = $("#cap_val").val();
+    $.ajax({
+        url:"/home/tools/checkCap/",
+        type:'post',
+        dataType:'json',
+        data:{"cap":cap},
+        success:function(answer){
+            $("#compare_result").html(answer.message);
+        }
+    })
+}
+
+// hide some data like 123****890
+function hideSth(str, first, last) {
+    var pure_str = str.toString();
+    var len = pure_str.length;
+
+    var str_first = pure_str.substr(0, first);
+    var str_last  = pure_str.substr(0-last, last);
+
+    for (var i=0; i < len - first - last; i++){
+        str_first += '*';
+    }
+    str_first += str_last;
+    return str_first;
+    
+}
+function hide()
+{
+	var str = $("#str_src").val();
+	var res = hideSth(str, 3,4);
+	$("#hide_result").html(res);
+}
+
+</script>
+
+</head>
+<body>
+<include file="Public:navigator" group="Home" />
+
+<h3>Time</h3>
+
+<div style="margin-left: 100px;">
+</div>
+
+<h3>MD5</h3>
+<div style="margin-left: 100px;">
+    <div><input id="md5_src" type="text" width="100px"/> <button style="width:80px;" onclick="get_md()"> md5 </button> <span id="md5_des"></span> <br />
+    </div>
+</div>
+
+<h3>Captcha</h3>
+<div style="margin-left: 100px;">
+    <img  src="/home/tools/getCaptcha/" onclick ="this.src=this.src+'?t='+Math.random()" style="height:45px;margin-top: -2px"/> 
+    <input id="cap_val" type="text" width="100px"/>
+    <button style="width:80px;" onclick="checkCap()">check captcha</button>
+    <span id="compare_result"></span>
+</div>
+
+<h3>string processing</h3>
+<div style="margin-left: 100px;">
+    <div><input id="str_src" type="text" width="100px"/> <button style="width:80px;" onclick="hide()"> md5 </button> <span id="hide_result"></span> <br />
+    </div>
+</div>
+
+
+</body>
+
+<script language="javascript" type="text/javascript" src="src/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+$function(){
+    tinyMCE.init({
+
+    mode : "textareas"
+
+});
+}
+
+
+</script>
+
+
+</html>
