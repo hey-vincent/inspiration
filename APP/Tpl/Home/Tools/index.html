@@ -4,7 +4,20 @@
 
 <style>
 .input_btn_result{
-    width=100px;
+    width:100px;
+}
+
+button{
+    width: 100px;
+    height: 50px;
+}
+input{
+    width: 200px;
+    height: 50px;
+}
+
+.left_blank{
+    margin-left:100px;
 }
 </style>
 
@@ -61,6 +74,7 @@ function hideSth(str, first, last) {
     return str_first;
     
 }
+
 function hide()
 {
 	var str = $("#str_src").val();
@@ -68,10 +82,22 @@ function hide()
 	$("#hide_result").html(res);
 }
 
-</script>
+function int2float()
+{
+    var val = $("#str_src").val();
+    if (val==null || val==undefined) {
+        alert("you typed an null value");
+    }
+    var num = new Number(val);
+    var flt = num.toFixed(2);
+    $("#hide_result").html(flt);
+}
 
+
+</script>
+    <link rel="stylesheet" type="text/css" href="/src/css/navigator.css">
 </head>
-<body>
+<body style="margin:0;padding:0;">
 <include file="Public:navigator" group="Home" />
 
 <h3>Time</h3>
@@ -81,38 +107,39 @@ function hide()
 
 <h3>MD5</h3>
 <div style="margin-left: 100px;">
-    <div><input id="md5_src" type="text" width="100px"/> <button style="width:80px;" onclick="get_md()"> md5 </button> <span id="md5_des"></span> <br />
+    <div><input id="md5_src" type="text" /> <button style="width:80px;" onclick="get_md()"> md5 </button> <span id="md5_des"></span> <br />
     </div>
 </div>
 
 <h3>Captcha</h3>
 <div style="margin-left: 100px;">
-    <img  src="/home/tools/getCaptcha/" onclick ="this.src=this.src+'?t='+Math.random()" style="height:45px;margin-top: -2px"/> 
     <input id="cap_val" type="text" width="100px"/>
+    <img  src="/home/tools/getCaptcha/" onclick ="this.src=this.src+'?t='+Math.random()" style="height:45px;margin-top: -2px"/> 
+    
     <button style="width:80px;" onclick="checkCap()">check captcha</button>
     <span id="compare_result"></span>
 </div>
 
 <h3>string processing</h3>
 <div style="margin-left: 100px;">
-    <div><input id="str_src" type="text" width="100px"/> <button style="width:80px;" onclick="hide()"> md5 </button> <span id="hide_result"></span> <br />
+    <div><input id="str_src" type="text" /> <button  onclick="hide()"> md5 </button> <span id="hide_result"></span> <br />
+    </div>
+</div>
+<!--parse integer to float-->
+<div class="left_blank">
+    <div> <button class="comn_btn" style="margin-left: 200px; " onclick="int2float()"> int2float </button> <span id="convert_result"></span> <br />
     </div>
 </div>
 
 
 </body>
 
-<script language="javascript" type="text/javascript" src="src/tinymce/js/tinymce/tinymce.min.js"></script>
 
 <script language="javascript" type="text/javascript">
 
-$function(){
-    tinyMCE.init({
-
-    mode : "textareas"
-
+$(function(){
+    alert('hello ')
 });
-}
 
 
 </script>

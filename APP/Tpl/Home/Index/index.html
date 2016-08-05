@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <style type="text/css">
-	.button_style{ border:solid; color: #fff; border-radius: 5px;border-color: #00FFFF;
-		height: 50px;width: 100px;
-		font-weight: bold;margin-left: 45%;
-		background-color: #FF0000; text-align: center;align-items: center;line-height: 50px;
-		font-size: 30px;  }
+
+	<!--编辑框样式-->
+	.input_editor
+	{
+		width:200px;
+		height:30px;
+		border-radius:5px;
+		font-size:20px;
+	}
+
+	<!--控件行间距-->
+	.login_area
+	{
+		margin-top:20%;
+		margin-left:60%;
+	}
+	
+	.line_distance
+	{
+		margin-top:20px;
+	}
+	
+	.login_btn
+	{
+		margin-top:20px;
+	}
+
 </style>
-
-
 
 <html>
 <head>
@@ -15,27 +35,18 @@
 </head>
 
 <body>
-<a href="http://www.baidu.com" target="_blank"> <strong> Click to open baidu.com in new tab</strong> </a>
-<br>
-<a href="http://www.baidu.com" target="_parent" draggable = "true"> 
-		<strong> target="_parent" draggable = "true" </strong> </a>
-<br>
-<a href="mailto: heyvincent@126.com"> mailto vincent</a>
+<include file="Public:navigator" group="Home" />
 
-<img src="/src/thumb.png" alt="Failed to download pic" height= 20px title="like"> 
 
-<div>
-	<form  method= 'post' action="/index/login">
-		<label for="user_name"><strong>user name</strong></label>
-		<input type="text" name="user_name" >
-		<br>
-		<label for="password"><strong>password</strong></label>
-		<input type="password" name="password" >
-		<div class="button_style">
-			<input type="submit" name="sign_in" title="sign in">
+<div class="login_area">
+	<form  method= 'post' action="/home/index/login">
+		<input class="input_editor" type="text"  placeholder="User Name" name="account" >
+		<div></div>
+		<input class="input_editor line_distance" type="password" placeholder="Password" name="password" >
+		
+		<div class="login_btn">
+			<input type="submit" name="sign_in" title="sign in" value="login">
 		</div>
-
-
 	</form>
 </div>
 <br>

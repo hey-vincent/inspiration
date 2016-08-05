@@ -1,68 +1,186 @@
-<style type = "text/css">
+<!DOCTYPE html>
+<html>
+<head>
 
-    .btnsubupdate {
-        width: 86px;
-        height: 30px;
-        margin-left:1%;
-        float: left;
-        padding:5px 10px;
-        background-color:#FF5432;
-        border-radius:5px;
-        width:110px;
-        text-align:center;
-        color:#fff;
-        background-repeat: no-repeat; border: none; cursor: pointer;
+  <title>home</title>
+
+  <style>
+    .editor
+    {
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 50px;
+    }
+  </style>
+
+<script src="/src/js_lib/jquery3.0.js"></script>
+<script type="text/javascript">
+
+ var right = false;
+ 
+function load()
+ {
+    document.getElementById("prog").value = 0;
+ }
+
+function banInputSapce(e)
+{
+  var keyCode;
+  if (window.event)
+  {
+    keyCode = e.keyCode;
+  }
+  else
+  {
+    keyCode = e.which;
+  }
+ 
+  if (keyCode==32 || keyCode == 93) {
+    return false;
+  }
+  
+} 
+
+// 正则表达式 判断输入是否符合类型
+function checkInput()
+    {
+        var txt=document.getElementById("txt").value;
+        //
+        var match = new RegExp("[^0-9A-Za-z~!@#$%\^&*_+]");
+        if( match.test(txt))
+        {
+            //alert('');
+            document.getElementById("result").innerHTML ="无效";
+        }
+        else
+        {
+             document.getElementById("result").innerHTML ="有效";
+        }
+        
+        return;
     }
 
-    #btnResetSubmit {
-        background-color: #2bff47;
-        font-weight: bold;
-        margin:10px 0px;
-        margin-top: 5px;
-        border-radius:5px;
-        width: 142px; height: 28px;
-        border: none; cursor: pointer; text-align:center;color: #fff;}
+// js 函数默认值
+function setdefault(args)
+{
+  var arg = arguments[0]? arguments[0] : "default value";
+  document.getElementById("default").innerHTML = arg;
+}
+
+// 字符串剪切
+function split()
+{
+    var str = document.getElementById("spliter").value ;
+    var spt = str.substr(-2, 1);
+    document.getElementById("split_result").innerHTML = spt ;
+    var start_time = new Date().getTime();
+    while(true){
+        var gone= new Date().getTime() - start_time;
+        if( gone >= 2000){
+            break;
+        }
+    }
+    var gender = spt.substr(-2, 1) % 2 ? '男' : '女';
+    document.getElementById("split_result").innerHTML = gender ;
+}
 
 
-</style>
+// 进度条
+function change_prog(pos)
+{
+    var pos_now = document.getElementById("prog").value;
+	if(pos_now > 90){
+		return;
+	}
+    pos_now += pos;
+    document.getElementById("prog").value = pos_now;
+    document.getElementById("pg_val").innerHTML = pos_now + "%";
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>say hello </title>
+// 自动加载
+$(function() 
+{
+	
+})
+
+function uperX()
+{
+    var num = $("#idnum").val();
+    
+    num = num.toString();
+    if(num.substr(-1,1) == 'x'){
+        var num1 = num.replace('x', 'X');
+        $("#idnum").val(num1);
+    }
+}
+
+function setstate()
+{
+
+}
+
+function sayHello()
+{
+  alert("Hello ?");
+}
+
+</script>
+
+<script>
+       
+</script>
+
+<script src=""></script>
 </head>
-<body>
-    <p>
-        Hello <strong>{$usr}</strong> welcome back.
-    </p>
 
 
-    <div class="tdContent" style="margin:10px 0px;text-align:center;">
-                   <a style="cursor:pointer;
-                       margin-left:1%;
-                       float: left;
-                       padding:5px 10px;
-                       background-color:#FF5432;
-                       border-radius:5px;
-                       width:110px;
-                       text-align:center;
-                       color:#fff;"
-                       href="#1">完成手机验证
-                   </a>
-    </div>
-    <div>
-        <a style="cursor:pointer;margin-right:70%;float: right;align-items:center;padding:5px 10px;
-						background-color:#FF5432;border-radius:5px;width:100px;text-align:center;color:#fff;"
-           href="javascript:window.location.href='http://www.baidu.com';">转到百度</a>
-    </div>
+<body onload="load()" style="margin:0;padding:0;">
+<include file="Public:navigator" group="Home" />
+
+<div style="margin-left:100px;">
+
+<span class="editor"><input type="text" name="password" id="password"  onkeydown="return banInputSapce(event);" /></span>
 
 
+<br>
+<input type="text" id="txt" width="100px"  style="margin-top:20px;">
+<button name="check" onclick="checkInput()"> check </button>
+<span id="result"></span>
 
-    <input value="完成并继续" class="btnsubupdate" id="btnAdd" type="button" >
-    <button type="button" class="btnsubupdate"  onclick="localhost">完成并继续</button>
 
-    <input id="btnResetSubmit" value=" 完成验证" type="button">
+<br>
+<input type="text" id="deft" width="100px" style="margin-top:20px;">
+<button name="check" onclick="setdefault()"> set </button>
+<span id="default" ></span>
 
+
+<br>
+<input type="text" id="spliter" width="100px" style="margin-top: 20px;">
+<button onclick="split()">split &nbsp string</button>
+<span style="color: red;"  id="split_result"> &nbsp &nbsp</span>
+
+</br>
+
+<progress id="prog" max="100" style="margin-top: 20px;" > progress </progress><span id="pg_val">0%</span>
+<button onclick="change_prog(10)"> +10 </button>
+<button onclick="change_prog(-10)"> -10 </button>
+
+<br />
+<input type="text" id="idnum" width="100px" style="margin-top: 20px;">
+<button onclick="uperX()">UperX</button>
+
+<br>
+<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Link with href
+</a>
+
+<br>
+<a href="javascript:sayHello()">lable 'a' with js-href</a>
+</div>
 </body>
+    
+
+
+
+
+
 </html>

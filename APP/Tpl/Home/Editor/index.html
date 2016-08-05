@@ -1,50 +1,89 @@
 <html>
-<head> 
-<title>Editor</title> 
-<style>
-</style>
+<head>
 
-<!--kindeditor script-->
-<script charset="utf-8" src="/src/kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="/src/kindeditor/lang/zh-CN.js"></script>
-<script>
-	var options = {
-			width:'700px',
-			height:'800px',
-			resizeType:0,
-			items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-							'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-							'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-							'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
-							'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-							'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
-							'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
-							'anchor', 'link', 'unlink', ]
-			
-		};
+    <title>Editor</title>
+    <style>
+        #editor_id {
+            width: 800px;
+            float: left;
+        }
 
-        KindEditor.ready(function(K) {
-                window.editor = K.create('#editor_id', options);
-        });
-</script>
+        .right_part {
+            margin-top: -800px;
+            margin-left: 700px;
+            background: url("/src/thumb.png");
+        }
+
+        .article_process {
+            border: 2px solid #dbeaf9;
+            border-radius: 5px;
+            float: left;
+            font-size: 15px;
+            margin: 5px;
+            text-align: center;
+            width: 50px;
+        }
+
+        .article_process:hover {
+            float: left;
+            background-color: #7460d8;
+            font-style: bold;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+    </style>
+
+    <!--kindeditor script-->
+    <script charset="utf-8" src="/src/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="/src/kindeditor/lang/zh-CN.js"></script>
+
 
 </head>
 
-<body>
+<body style="margin:0;padding:0;">
 
-<include file="Public:navigator" group="Home" />
+<!--navigator-->
+<include file="Public:navigator" group="Home"/>
 
 
-<div>
-<textarea id="editor_id" name="content" >
+<!--左侧编辑区-->
+<textarea id="editor_id" name="content">
 </textarea>
-</div>
 
+
+<!--功能区-->
+<div style="float: left; margin-right: 10px; ">
+    <ul type="none" class="right_part">
+        <li class="article_process">New</li>
+        <li class="article_process">Edit</li>
+        <li class="article_process">Delete</li>
+        <li class="article_process">Save</li>
+    </ul>
+</div>
 
 
 </body>
 
+<script>
+    var options = {
+        width: '700px',
+        height: '800px',
+        resizeType: 0,
+        items: ['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+            'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+            'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+            'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+            'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+            'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+            'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+            'anchor', 'link', 'unlink',]
 
+    };
+
+    KindEditor.ready(function (K) {
+        window.editor = K.create('#editor_id', options);
+    });
+</script>
 
 
 </html>
