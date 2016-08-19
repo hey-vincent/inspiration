@@ -3,6 +3,7 @@
 
     <title>Editor</title>
     <style>
+
         #editor_id {
             width: 800px;
             float: left;
@@ -10,9 +11,20 @@
 
         .right_part {
             margin-top: -800px;
-            margin-left: 700px;
-            background: url("/src/thumb.png");
+            margin-left: 705px;
         }
+
+        .bottom_part
+        {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 14px;
+            border-radius: 5px;
+            background-color: #d8d8d8;
+            margin-top: 750px;
+            height: 93px;
+            width: 100%;
+        }
+
 
         .article_process {
             border: 2px solid #dbeaf9;
@@ -31,6 +43,22 @@
             color: #FFFFFF;
             cursor: pointer;
         }
+
+        .operation_div
+        {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 14px;
+            border-radius: 5px;
+            background-color: #d8d8d8;
+            height: 40px;
+            padding-top: 15px;
+        }
+
+       .operation_items
+       {
+            margin-left: 15px;
+            height: 40px;
+       } 
     </style>
 
     <!--kindeditor script-->
@@ -52,14 +80,21 @@
 
 
 <!--功能区-->
-<div style="float: left; margin-right: 10px; ">
-    <ul type="none" class="right_part">
+<div class="right_part operation_div"> 
+    <a class="operation_items" href="javascript:newItem()">new</a>
+    <a class="operation_items" href="javascript:save()">save</a>
+</div>
+
+<div class="bottom_part"></div>
+
+<!--div style="float: left; margin-right: 10px; background-color: red; ">
+    <ul type="none" class="right_part" style="background-color: red;">
         <li class="article_process">New</li>
         <li class="article_process">Edit</li>
         <li class="article_process">Delete</li>
         <li class="article_process">Save</li>
     </ul>
-</div>
+</div-->
 
 
 </body>
@@ -87,3 +122,17 @@
 
 
 </html>
+
+<script type="text/javascript">
+    function newItem()
+    {
+        alert('hello world');
+    }
+
+    function save()
+    {
+        alert('hello world');
+    }
+
+
+</script>

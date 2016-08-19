@@ -11,7 +11,7 @@ class IndexAction extends Action {
     {
     	$status_arr = array('待审核', '审核通过,处理中', '已提现', '审核未通过','提现取消');
     	
-    	$src = "刘文胜";
+    	$src = "vincent";
     	$res = hideInfo($src,1,0);
     	var_dump($res);
 		$this->display();
